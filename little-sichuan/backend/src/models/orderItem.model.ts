@@ -17,10 +17,10 @@ import Order from './order.model';
 @Entity()
 export default class OrderItem {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id: number;
 
     @Column('uuid')
-    productId: string;
+    productId: number;
 
     @Column('int')
     quantity: number;
@@ -29,7 +29,7 @@ export default class OrderItem {
     totalPrice: Double;
 
     @Column('uuid')
-    image: string;
+    image: number;
 
     @OneToOne(() => Product, product => product.orderItem)
     @JoinColumn()

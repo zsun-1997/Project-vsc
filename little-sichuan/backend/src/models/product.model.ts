@@ -16,19 +16,19 @@ import OrderItem from './orderItem.model';
 @Entity()
 export default class Product {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id: number;
 
     @Column('char')
     name: string;
 
     @Column('text')
-    description: Text;
+    description: string;
 
-    @Column()
+    @Column('char')
     type: string;
 
-    @Column('varchar')
-    image: string;
+    @Column('BLOB')
+    image: Blob;
 
     @Column('decimal')
     price: Double;

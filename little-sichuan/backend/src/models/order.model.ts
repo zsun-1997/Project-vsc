@@ -17,7 +17,7 @@ import OrderItem from './orderItem.model';
 @Entity()
 export default class Order {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id: number;
 
     @Column('timestamp')
     odderedTime: Timestamp;
