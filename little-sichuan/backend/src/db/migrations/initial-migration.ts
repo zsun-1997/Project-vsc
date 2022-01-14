@@ -8,13 +8,25 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                 columns: [
                     {
                         name: 'id',
-                        type: 'varchar',
+                        type: 'number',
                         isPrimary: true,
                         generationStrategy: 'uuid'
                     },
                     {
                         name: 'name',
                         type: 'varchar'
+                    },
+                    {
+                        name: 'description',
+                        type: 'text'
+                    },
+                    {
+                        name: 'image',
+                        type: 'blob'
+                    },
+                    {
+                        name: 'price',
+                        type: 'decimal'
                     }
                 ]
             }),

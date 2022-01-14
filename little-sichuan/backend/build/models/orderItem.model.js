@@ -31,11 +31,11 @@ let OrderItem = class OrderItem {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn('uuid'),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], OrderItem.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column('uuid'),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], OrderItem.prototype, "productId", void 0);
 __decorate([
     typeorm_1.Column('int'),
@@ -47,7 +47,7 @@ __decorate([
 ], OrderItem.prototype, "totalPrice", void 0);
 __decorate([
     typeorm_1.Column('uuid'),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], OrderItem.prototype, "image", void 0);
 __decorate([
     typeorm_1.OneToOne(() => _1.Product, product => product.orderItem),

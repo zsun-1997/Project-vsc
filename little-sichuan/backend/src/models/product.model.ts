@@ -18,7 +18,7 @@ export default class Product {
     @PrimaryGeneratedColumn('uuid')
     id: number;
 
-    @Column('char')
+    @Column('varchar')
     name: string;
 
     @Column('text')
