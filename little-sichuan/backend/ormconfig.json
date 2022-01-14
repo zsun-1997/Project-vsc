@@ -1,0 +1,14 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "password",
+    "database": "little-sichuan",
+    "entities": ["src/models/**/*.model.ts"],
+    "migrations": ["src/db/migrations/**/*.ts"],
+    "cli": {
+        "entitiesDir": "src/models",
+        "migrationsDir": "src/db/migrations"
+    }
+}

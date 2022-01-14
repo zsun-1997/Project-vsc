@@ -1,0 +1,1 @@
+{"version":3,"file":"trace.middleware.js","sourceRoot":"","sources":["../../src/middleware/trace.middleware.ts"],"names":[],"mappings":";;AACA,+BAAoC;AAEpC;;GAEG;AACH,kBAAe,CAAC,GAAY,EAAE,GAAa,EAAE,IAAkB,EAAE,EAAE;IACjE,GAAG,CAAC,KAAK,GAAG,SAAM,EAAE,CAAC;IACrB,IAAI,EAAE,CAAC;AACT,CAAC,CAAC"}

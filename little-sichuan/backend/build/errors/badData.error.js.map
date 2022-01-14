@@ -1,0 +1,1 @@
+{"version":3,"file":"badData.error.js","sourceRoot":"","sources":["../../src/errors/badData.error.ts"],"names":[],"mappings":";;AAAA,wBAA8B;AAE9B;;;GAGG;AACH,MAAqB,YAAa,SAAQ,YAAS;IACjD;;;;SAIK;IACL,YAAY,OAAe,EAAE,IAAY,EAAE,OAAkB;QAC3D,KAAK,CAAC,OAAO,EAAE,YAAY,IAAI,EAAE,EAAE,GAAG,EAAE,OAAO,CAAC,CAAC;IACnD,CAAC;CACF;AATD,+BASC"}
