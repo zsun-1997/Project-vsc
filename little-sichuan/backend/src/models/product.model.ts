@@ -27,8 +27,8 @@ export default class Product {
     @Column('char')
     type: string;
 
-    @Column('BLOB')
-    image: Blob;
+    @Column('blob')
+    image: string;
 
     @Column('decimal')
     price: Double;

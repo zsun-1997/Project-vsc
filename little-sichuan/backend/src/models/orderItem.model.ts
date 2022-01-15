@@ -29,7 +29,7 @@ export default class OrderItem {
     totalPrice: Double;
 
     @Column('uuid')
-    image: number;
+    orderId: number;
 
     @OneToOne(() => Product, product => product.orderItem)
     @JoinColumn()

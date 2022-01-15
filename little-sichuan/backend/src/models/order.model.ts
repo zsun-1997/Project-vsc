@@ -28,10 +28,10 @@ export default class Order {
     @Column('decimal')
     taxAmount: Double;
 
-    @Column()
+    @Column('varchar')
     phoneNumber: string;
 
-    @Column()
+    @Column('text')
     status: string;
 
 
