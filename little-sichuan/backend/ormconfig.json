@@ -6,6 +6,7 @@
     "password": "password",
     "database": "little-sichuan",
     "entities": ["src/models/**/*.model.ts"],
+    "seeds": [ "src/db/seeds/**/*{.ts,.js}" ],
     "migrations": ["src/db/migrations/**/*.ts"],
     "cli": {
         "entitiesDir": "src/models",
