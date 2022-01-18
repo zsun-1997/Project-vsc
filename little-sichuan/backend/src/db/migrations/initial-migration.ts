@@ -32,7 +32,7 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                     },
                     {
                         name: 'image',
-                        type: 'blob'
+                        type: 'varchar'
                     },
                     {
                         name: 'price',

@@ -25,4 +25,13 @@ productRouter.get(
     })
 );
 
+productRouter.get(
+    '/:id',
+    ash(async (req, res) => {
+        const id = req.params.id;
+        console.log(id);
+        res.send(await ProductService.fetchbyIdProducts(id));
+    })
+);
+
 export default productRouter;

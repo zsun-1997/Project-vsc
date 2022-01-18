@@ -33,7 +33,7 @@ export default class Product {
     @Column('varchar')
     type: string;
 
-    @Column('blob')
+    @Column('varchar')
     image: string;
 
     @Column('decimal')
