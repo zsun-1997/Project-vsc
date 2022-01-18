@@ -1,4 +1,13 @@
-import { PrimaryGeneratedColumn, Entity, Column, Double, OneToOne, JoinColumn, Timestamp, OneToMany } from 'typeorm';
+import {
+    PrimaryGeneratedColumn,
+    Entity,
+    Column,
+    Double,
+    OneToOne,
+    JoinColumn,
+    Timestamp,
+    OneToMany
+} from 'typeorm';
 import { Product } from '.';
 import OrderItem from './orderItem.model';
 
@@ -17,7 +26,7 @@ import OrderItem from './orderItem.model';
 @Entity()
 export default class Order {
     @PrimaryGeneratedColumn('uuid')
-    id: number;
+    id: string;
 
     @Column('timestamp')
     odderedTime: Timestamp;
@@ -34,8 +43,7 @@ export default class Order {
     @Column('text')
     status: string;
 
-
-    @OneToMany(() => OrderItem, orderItem => orderItem.order)
+    @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
     orderItem: OrderItem[];
     // static createProduct(name: string) {
     //     const product = new Product();

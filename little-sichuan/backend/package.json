@@ -10,7 +10,7 @@
         "coverage": "nyc ts-mocha tests/*.ts --exit",
         "lint": "eslint ./{seeds,src,tests}/{*,**}.ts",
         "lint:fix": "eslint ./{seeds,src,tests}/{*,**}.ts --fix",
-        "seed": "ts-node-dev db/seeds/seeds.ts",
+        "seed": "ts-node-dev src/db/seeds/seeds.ts",
         "start": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
         "test": "ts-mocha tests/*.ts --exit",
         "typeorm": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js"
@@ -32,6 +32,7 @@
         "boolean": "^3.0.1",
         "cors": "^2.8.5",
         "csv-parser": "^3.0.0",
+        "csvtojson": "^2.0.10",
         "debug": "^4.1.1",
         "dotenv": "^8.2.0",
         "express": "^4.17.2",
