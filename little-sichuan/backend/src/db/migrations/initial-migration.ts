@@ -92,6 +92,10 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                         type: 'decimal'
                     },
                     {
+                        name: 'taxAmount',
+                        type: 'decimal'
+                    },
+                    {
                         name: 'phoneNumber',
                         type: 'varchar'
                     },

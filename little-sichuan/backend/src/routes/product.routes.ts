@@ -34,4 +34,29 @@ productRouter.get(
     })
 );
 
+productRouter.patch(
+    '/:id',
+    ash(async (req, res) => {
+        const updatSta = req.body;
+        console.log(updatSta);
+        res.send(await ProductService.UpdateStatus(updatSta));
+    })
+);
+
+productRouter.post(
+    '/',
+    ash(async (req, res) => {
+        const newProduct = req.body;
+        res.send(await ProductService.addNewProduct(newProduct));
+    })
+);
+
+productRouter.delete(
+    '/:id',
+    ash(async (req, res) => {
+        const delId = req.body;
+        res.send(await ProductService.delProduct(delId));
+    })
+);
+
 export default productRouter;

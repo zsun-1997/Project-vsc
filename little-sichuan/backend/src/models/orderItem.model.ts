@@ -51,4 +51,9 @@ export default class OrderItem {
     //     product.name = name;
     //     return product;
     // }
+    static createOrderItem(quantity: number, totalPrice: Double) {
+        const orderItem = new OrderItem();
+        orderItem.quantity = quantity;
+        orderItem.totalPrice = totalPrice;
+    }
 }
