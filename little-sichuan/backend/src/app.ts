@@ -20,6 +20,7 @@ import {
 import { swaggerRouter, productRouter } from './routes';
 import { NotFoundError } from './errors';
 import orderRoutes from './routes/order.routes';
+//import joi from '@hapi/joi';
 
 export default createConnection().then(() => {
     const app = express();
@@ -53,6 +54,7 @@ export default createConnection().then(() => {
     app.use(jwtMiddlware);
     app.use('/api/product', productRouter);
     app.use('/api/order', orderRoutes);
+
     app.use('/api/*', (req, res, next) => {
         if (req.method === 'OPTIONS') {
             // permit CORS pre-flight requests to pass through
@@ -62,6 +64,9 @@ export default createConnection().then(() => {
         }
     });
     app.use(errorMiddleware);
-
+    // app.use((err, req, res, next) => {
+    //     if (err instanceof joi.ValidationError) res.cc(err);
+    //     res.cc(err);
+    // });
     return app;
 });

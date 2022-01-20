@@ -34,27 +34,27 @@ productRouter.get(
     })
 );
 
-productRouter.patch(
-    '/:id',
-    ash(async (req, res) => {
-        const updatSta = req.body;
-        console.log(updatSta);
-        res.send(await ProductService.UpdateStatus(updatSta));
-    })
-);
-
 productRouter.post(
     '/',
     ash(async (req, res) => {
-        const newProduct = req.body;
-        res.send(await ProductService.addNewProduct(newProduct));
+        //const newProduct = req.body;
+        let { name, description, type, image, price } = req.body;
+        res.send(
+            await ProductService.addNewProduct(
+                name,
+                description,
+                type,
+                image,
+                price
+            )
+        );
     })
 );
 
 productRouter.delete(
     '/:id',
     ash(async (req, res) => {
-        const delId = req.body;
+        const delId = req.params.id;
         res.send(await ProductService.delProduct(delId));
     })
 );

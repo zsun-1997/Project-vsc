@@ -46,14 +46,16 @@ export default class OrderItem {
     @ManyToOne(() => Order, (order) => order.orderItem)
     order: Order;
 
-    // static createProduct(name: string) {
-    //     const product = new Product();
-    //     product.name = name;
-    //     return product;
-    // }
-    static createOrderItem(quantity: number, totalPrice: Double) {
+    static createOrderItem(
+        productId: string,
+        quantity: number,
+        totalPrice: Double,
+        orderId: string
+    ) {
         const orderItem = new OrderItem();
+        orderItem.productId = productId;
         orderItem.quantity = quantity;
         orderItem.totalPrice = totalPrice;
+        orderItem.orderId = orderId;
     }
 }
