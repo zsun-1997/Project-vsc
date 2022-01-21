@@ -19,8 +19,9 @@ import {
 } from './middleware';
 import { swaggerRouter, productRouter } from './routes';
 import { NotFoundError } from './errors';
-import orderRoutes from './routes/order.routes';
-//import joi from '@hapi/joi';
+// import orderRoute from './routes/order.routes';
+import orderRouter from './routes/order.routes';
+import joi from '@hapi/joi';
 
 export default createConnection().then(() => {
     const app = express();
@@ -53,7 +54,10 @@ export default createConnection().then(() => {
     app.use(traceMiddleware);
     app.use(jwtMiddlware);
     app.use('/api/product', productRouter);
-    app.use('/api/order', orderRoutes);
+    app.use('/api/order', orderRouter);
+    app.use((err, req, res, next) => {
+        if (err instanceof joi.ValidationError) return res.send('schema error');
+    });
 
     app.use('/api/*', (req, res, next) => {
         if (req.method === 'OPTIONS') {
@@ -64,9 +68,5 @@ export default createConnection().then(() => {
         }
     });
     app.use(errorMiddleware);
-    // app.use((err, req, res, next) => {
-    //     if (err instanceof joi.ValidationError) res.cc(err);
-    //     res.cc(err);
-    // });
     return app;
 });

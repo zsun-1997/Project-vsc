@@ -1,3 +1,4 @@
+import { OutgoingMessage } from 'http';
 import { Double, getRepository, Repository } from 'typeorm';
 import { Order, OrderItem } from '../models';
 
@@ -11,10 +12,10 @@ export default class OrderService {
         item_totalPrice: Double
     ) {
         const order = new Order();
-        const orderItem = new OrderItem();
         order.phoneNumber = phoneNumber;
         order.totalPrice = totalPrice;
         order.taxAmount = taxAmount;
+        const orderItem = new OrderItem();
         orderItem.productId = productId;
         orderItem.quantity = quantity;
         orderItem.totalPrice = item_totalPrice;
@@ -31,7 +32,7 @@ export default class OrderService {
     }
     static async UpdateStatus(id: string, status: string) {
         const orderRepository = getRepository(Order);
-        let order;
+        let order = new Order();
         try {
             order = await orderRepository.findOneOrFail(id);
         } catch (error) {

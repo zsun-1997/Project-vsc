@@ -2,11 +2,11 @@ import { Router } from 'express';
 import ash from 'express-async-handler';
 import OrderService from '../services/order.service';
 import expressJoi from '@escook/express-joi';
-const orderRoutes = Router();
+const orderRouter = Router();
 const { order_schema } = require('../schema/order');
-orderRoutes.post(
+orderRouter.post(
     '/',
-    //expressJoi(order_schema),
+    expressJoi(order_schema),
     ash(async (req, res) => {
         // const orderInfo = req.body;
         let {
@@ -30,15 +30,15 @@ orderRoutes.post(
     })
 );
 
-orderRoutes.patch(
+orderRouter.patch(
     '/:id',
     ash(async (req, res) => {
         const id = req.params.id;
-        const status = req.body;
+        const status: string = req.body;
         res.send(await OrderService.UpdateStatus(id, status));
     })
 );
-export default orderRoutes;
+export default orderRouter;
 // function newFunction(): { order_schema: any } {
 //     return require('../schema/order');
 // }
