@@ -44,7 +44,7 @@ export class InitialMigration1641677200652 implements MigrationInterface {
         );
         await queryRunner.createTable(
             new Table({
-                name: 'orderItem',
+                name: 'orderitem',
                 columns: [
                     {
                         name: 'id',
@@ -57,12 +57,12 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                         type: 'varchar'
                     },
                     {
-                        name: 'quatity',
+                        name: 'quantity',
                         type: 'int'
                     },
                     {
                         name: 'totalPrice',
-                        type: 'double'
+                        type: 'decimal'
                     },
                     {
                         name: 'orderId',
@@ -113,7 +113,7 @@ export class InitialMigration1641677200652 implements MigrationInterface {
         // }))
 
         await queryRunner.createForeignKey(
-            'orderItem',
+            'orderitem',
             new TableForeignKey({
                 columnNames: ['productId'],
                 referencedColumnNames: ['id'],
@@ -128,7 +128,7 @@ export class InitialMigration1641677200652 implements MigrationInterface {
         // }))
 
         await queryRunner.createForeignKey(
-            'orderItem',
+            'orderitem',
             new TableForeignKey({
                 columnNames: ['orderId'],
                 referencedColumnNames: ['id'],
@@ -139,18 +139,18 @@ export class InitialMigration1641677200652 implements MigrationInterface {
     }
 
     async down(queryRunner: QueryRunner): Promise<void> {
-        const table1 = await queryRunner.getTable('orderItem');
+        const table1 = await queryRunner.getTable('orderitem');
         const foreignKey1 = table1.foreignKeys.find(
             (fk) => fk.columnNames.indexOf('productId') !== -1
         );
-        await queryRunner.dropForeignKey('orderItem', foreignKey1);
-        const table2 = await queryRunner.getTable('orderItem');
+        await queryRunner.dropForeignKey('orderitem', foreignKey1);
+        const table2 = await queryRunner.getTable('orderitem');
         const foreignKey2 = table2.foreignKeys.find(
             (fk) => fk.columnNames.indexOf('orderId') !== -1
         );
-        await queryRunner.dropForeignKey('orderItem', foreignKey2);
+        await queryRunner.dropForeignKey('orderitem', foreignKey2);
         await queryRunner.dropTable('product');
-        await queryRunner.dropTable('orderItem');
+        await queryRunner.dropTable('orderitem');
         await queryRunner.dropTable('order');
     }
 }

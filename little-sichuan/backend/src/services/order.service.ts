@@ -9,22 +9,32 @@ export default class OrderService {
         taxAmount: number,
         productId: string,
         quantity: number,
-        item_totalPrice: Double
+        item_totalPrice: number
     ) {
         const order = new Order();
+        const status = 'UNPAID';
         order.phoneNumber = phoneNumber;
         order.totalPrice = totalPrice;
         order.taxAmount = taxAmount;
+        order.status = status;
         const orderItem = new OrderItem();
+        const orderId = 'unknow';
         orderItem.productId = productId;
         orderItem.quantity = quantity;
         orderItem.totalPrice = item_totalPrice;
+        orderItem.orderId = orderId;
         orderItem.order = order;
+        console.log(orderId);
         const orderRepository = getRepository(Order);
+        // const orderId = order.id;
+        // orderItem.orderId = orderId;
         const orderItemRepository = getRepository(OrderItem);
+        //await orderRepository.save(order);
+        await orderItemRepository.save(orderItem);
         try {
+            //console.log(productId);
             await orderRepository.save(order);
-            await orderItemRepository.save(orderItem);
+            //await orderItemRepository.save(orderItem);
         } catch (error) {
             return 'error';
         }

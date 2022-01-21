@@ -22,7 +22,7 @@ import Order from './order.model';
  *              name:
  *                  type: string
  */
-@Entity()
+@Entity('OrderItem')
 export default class OrderItem {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -34,7 +34,7 @@ export default class OrderItem {
     quantity: number;
 
     @Column('decimal')
-    totalPrice: Double;
+    totalPrice: number;
 
     @Column('uuid')
     orderId: string;
@@ -49,7 +49,7 @@ export default class OrderItem {
     static createOrderItem(
         productId: string,
         quantity: number,
-        totalPrice: Double,
+        totalPrice: number,
         orderId: string
     ) {
         const orderItem = new OrderItem();
