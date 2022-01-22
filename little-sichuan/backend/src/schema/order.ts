@@ -1,3 +1,11 @@
+// import yup from 'yup';
+// let schema = yup.object().shape({
+//     phoneNumber: yup.string().min(9).max(9).required(),
+//     totalPrice: yup.number().required(),
+//     taxAmount: yup.number().required()
+//     //status: yup.string().default('UNPAID')
+// });
+
 // import joi from '@hapi/joi';
 
 // const totalPrice = joi.number().required();

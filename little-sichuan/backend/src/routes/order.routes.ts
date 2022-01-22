@@ -3,10 +3,13 @@ import ash from 'express-async-handler';
 import OrderService from '../services/order.service';
 // import expressJoi from '@escook/express-joi';
 const orderRouter = Router();
-const { order_schema } = require('../schema/order');
+//const { order_schema } = require('../schema/order');
+// const ValidateSch = require('../middleware/validate-schema');
+// const schema = require('../schema/order');
 orderRouter.post(
     '/',
     // expressJoi(order_schema),
+    // ValidateSch(schema),
     ash(async (req, res) => {
         // const orderInfo = req.body;
         let {
