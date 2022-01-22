@@ -25,4 +25,38 @@ productRouter.get(
     })
 );
 
+productRouter.get(
+    '/:id',
+    ash(async (req, res) => {
+        const id = req.params.id;
+        console.log(id);
+        res.send(await ProductService.fetchbyIdProducts(id));
+    })
+);
+
+productRouter.post(
+    '/',
+    ash(async (req, res) => {
+        //const newProduct = req.body;
+        let { name, description, type, image, price } = req.body;
+        res.send(
+            await ProductService.addNewProduct(
+                name,
+                description,
+                type,
+                image,
+                price
+            )
+        );
+    })
+);
+
+productRouter.delete(
+    '/:id',
+    ash(async (req, res) => {
+        const delId = req.params.id;
+        res.send(await ProductService.delProduct(delId));
+    })
+);
+
 export default productRouter;

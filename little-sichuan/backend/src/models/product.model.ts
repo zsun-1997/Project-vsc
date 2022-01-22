@@ -1,4 +1,10 @@
-import { PrimaryGeneratedColumn, Entity, Column, Double, OneToOne } from 'typeorm';
+import {
+    PrimaryGeneratedColumn,
+    Entity,
+    Column,
+    Double,
+    OneToOne
+} from 'typeorm';
 import OrderItem from './orderItem.model';
 
 /**
@@ -18,13 +24,13 @@ export default class Product {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column('char')
+    @Column('varchar')
     name: string;
 
     @Column('text')
-    description: Text;
+    description: string;
 
-    @Column()
+    @Column('varchar')
     type: string;
 
     @Column('varchar')
@@ -33,13 +39,22 @@ export default class Product {
     @Column('decimal')
     price: Double;
 
-    @OneToOne(()=>OrderItem, orderItem => orderItem.product)
+    @OneToOne(() => OrderItem, (orderItem) => orderItem.product)
     orderItem: OrderItem;
 
-
-     static createProduct(name: string) {
+    static createProduct(
+        name: string,
+        description: string,
+        type: string,
+        image: string,
+        price: Double
+    ) {
         const product = new Product();
-         product.name = name;
-         return product;
-     }
+        product.name = name;
+        product.description = description;
+        product.type = type;
+        product.image = image;
+        product.price = price;
+        return product;
+    }
 }

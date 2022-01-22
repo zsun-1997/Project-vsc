@@ -30,7 +30,7 @@ let Order = class Order {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn('uuid'),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Order.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column('timestamp'),

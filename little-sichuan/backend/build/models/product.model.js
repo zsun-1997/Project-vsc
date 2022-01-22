@@ -36,7 +36,7 @@ let Product = Product_1 = class Product {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn('uuid'),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], Product.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column('char'),
@@ -44,15 +44,15 @@ __decorate([
 ], Product.prototype, "name", void 0);
 __decorate([
     typeorm_1.Column('text'),
-    __metadata("design:type", Text)
+    __metadata("design:type", String)
 ], Product.prototype, "description", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column('char'),
     __metadata("design:type", String)
 ], Product.prototype, "type", void 0);
 __decorate([
-    typeorm_1.Column('varchar'),
-    __metadata("design:type", String)
+    typeorm_1.Column('BLOB'),
+    __metadata("design:type", Blob)
 ], Product.prototype, "image", void 0);
 __decorate([
     typeorm_1.Column('decimal'),

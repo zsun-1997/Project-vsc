@@ -1,13 +1,36 @@
 import { getRepository, createConnection } from 'typeorm';
 import { Product } from '../../models';
 import logger from '../../config/logger.config';
+import csv from 'csvtojson';
 
-export default createConnection()
-    .then(() => getRepository(Product).save(Product.createProduct('Fried Rice')))
+createConnection()
+    .then(async () => {
+        console.log('seed start');
+        const productList: Array<Product> = [];
+        await csv()
+            .fromFile(`${__dirname}/seed-data.csv`)
+            .then((jsonObj) => {
+                jsonObj.forEach((item) => {
+                    productList.push(
+                        Product.createProduct(
+                            item['item_name'],
+                            item['item_desc'],
+                            item['type'],
+                            item['image'],
+                            item['price']
+                        )
+                    );
+                });
+                console.log(productList);
+            });
+        await getRepository(Product).save(productList);
+    })
     .then(() => {
-        logger('seed complete');
+        console.log('Seed comlete');
+        process.exit(0);
     })
     .catch((err) => {
-        logger('seed error');
-        logger(err);
+        console.log('Seed error');
+        console.log(err);
+        process.exit(1);
     });

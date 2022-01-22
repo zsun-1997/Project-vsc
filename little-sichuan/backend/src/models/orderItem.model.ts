@@ -1,4 +1,12 @@
-import { PrimaryGeneratedColumn, Entity, Column, Double, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import {
+    PrimaryGeneratedColumn,
+    Entity,
+    Column,
+    Double,
+    OneToOne,
+    JoinColumn,
+    ManyToOne
+} from 'typeorm';
 import { Product } from '.';
 import Order from './order.model';
 
@@ -14,7 +22,7 @@ import Order from './order.model';
  *              name:
  *                  type: string
  */
-@Entity()
+@Entity('OrderItem')
 export default class OrderItem {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -26,23 +34,28 @@ export default class OrderItem {
     quantity: number;
 
     @Column('decimal')
-    totalPrice: Double;
+    totalPrice: number;
 
     @Column('uuid')
-    image: string;
+    orderId: string;
 
-    @OneToOne(() => Product, product => product.orderItem)
+    @OneToOne(() => Product, (product) => product.orderItem)
     @JoinColumn()
-    product:Product;
+    product: Product;
 
+    @ManyToOne(() => Order, (order) => order.orderItem)
+    order: Order;
 
-
-    @ManyToOne(() => Order, order => order.orderItem)
-    order:Order;
-
-    // static createProduct(name: string) {
-    //     const product = new Product();
-    //     product.name = name;
-    //     return product;
-    // }
+    static createOrderItem(
+        productId: string,
+        quantity: number,
+        totalPrice: number,
+        orderId: string
+    ) {
+        const orderItem = new OrderItem();
+        orderItem.productId = productId;
+        orderItem.quantity = quantity;
+        orderItem.totalPrice = totalPrice;
+        orderItem.orderId = orderId;
+    }
 }
