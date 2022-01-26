@@ -2,14 +2,10 @@ import {
     PrimaryGeneratedColumn,
     Entity,
     Column,
-    Double,
-    OneToOne,
-    JoinColumn,
     Timestamp,
     OneToMany
 } from 'typeorm';
-import { Product } from '.';
-import orderRoutes from '../routes/order.routes';
+import { OrderStatus } from '../enums/OrderStatus.enum';
 import OrderItem from './orderItem.model';
 
 /**
@@ -50,12 +46,13 @@ export default class Order {
         totalPrice: number,
         taxAmount: number,
         phoneNumber: string,
-        status: string
+        status: OrderStatus
     ) {
         const order = new Order();
         order.totalPrice = totalPrice;
         order.taxAmount = taxAmount;
         order.phoneNumber = phoneNumber;
         order.status = status;
+        return order;
     }
 }

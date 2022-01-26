@@ -53,20 +53,12 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                         generationStrategy: 'uuid'
                     },
                     {
-                        name: 'productId',
-                        type: 'varchar'
-                    },
-                    {
                         name: 'quantity',
                         type: 'int'
                     },
                     {
-                        name: 'totalPrice',
+                        name: 'itemtotalPrice',
                         type: 'decimal'
-                    },
-                    {
-                        name: 'orderId',
-                        type: 'varchar'
                     }
                 ]
             }),
@@ -107,10 +99,14 @@ export class InitialMigration1641677200652 implements MigrationInterface {
             }),
             true
         );
-        // await queryRunner.addColumn("orderItem", new TableColumn({
-        //     name: 'productId',
-        //     type: 'int'
-        // }))
+        await queryRunner.addColumn(
+            'orderitem',
+            new TableColumn({
+                name: 'productId',
+                type: 'varchar',
+                isNullable: false
+            })
+        );
 
         await queryRunner.createForeignKey(
             'orderitem',
@@ -118,22 +114,27 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                 columnNames: ['productId'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'product',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
             })
         );
 
-        // await queryRunner.addColumn("orderItem", new TableColumn({
-        //     name: 'orderId',
-        //     type: 'int'
-        // }))
-
+        await queryRunner.addColumn(
+            'orderitem',
+            new TableColumn({
+                name: 'orderId',
+                type: 'varchar',
+                isNullable: false
+            })
+        );
         await queryRunner.createForeignKey(
             'orderitem',
             new TableForeignKey({
                 columnNames: ['orderId'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'order',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
             })
         );
     }

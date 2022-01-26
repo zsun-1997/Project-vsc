@@ -37,8 +37,7 @@ productRouter.get(
 productRouter.post(
     '/',
     ash(async (req, res) => {
-        //const newProduct = req.body;
-        let { name, description, type, image, price } = req.body;
+        const { name, description, type, image, price } = req.body;
         res.send(
             await ProductService.addNewProduct(
                 name,
