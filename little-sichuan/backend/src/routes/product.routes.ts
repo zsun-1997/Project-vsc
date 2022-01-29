@@ -42,7 +42,9 @@ productRouter.post(
         const { name, description, type, image, price } = req.body;
         const myValidator = new Validator();
         const validation = myValidator.validate(schema, req.body);
-        if (validation.valid) {
+        if (validation.valid == false) {
+            console.log(validation.instance);
+            console.log(validation.valid);
             res.send(
                 await ProductService.addNewProduct(
                     name,

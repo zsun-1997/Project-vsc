@@ -1,20 +1,26 @@
 export const productSchema = {
-    type: 'object',
+    type: 'Product',
     properties: {
-        totalPrice: { type: 'string' },
-        taxAmount: { type: 'string' },
-        phoneNumber: { type: 'string' },
-        orderItems: {
-            type: 'array',
-            items: {
-                properties: {
-                    itemId: { type: 'string' },
-                    totalPrice: { type: 'string' },
-                    quantity: { type: 'string' }
-                },
-                required: ['itemId', 'totalPrice', 'quantity']
-            }
-        }
+        // totalPrice: { type: 'string' },
+        // taxAmount: { type: 'string' },
+        // phoneNumber: { type: 'string' },
+        name: { type: 'string' },
+        description: { type: 'string' },
+        type: { type: 'string' },
+        image: { type: 'string' },
+        price: { type: 'number' }
+
+        // orderItems: {
+        //     type: 'array',
+        //     items: {
+        //         properties: {
+        //             itemId: { type: 'string' },
+        //             totalPrice: { type: 'string' },
+        //             quantity: { type: 'string' }
+        //         },
+        //         required: ['itemId', 'totalPrice', 'quantity']
+        //     }
+        // }
     },
-    required: ['totalPrice', 'taxAmount', 'phoneNumber', 'orderItems']
+    required: ['name', 'description', 'type', 'image', 'price']
 };
