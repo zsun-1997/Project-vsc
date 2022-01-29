@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import ash from 'express-async-handler';
 import ProductService from '../services/product.service';
-
+//import Validator = require('jsonschema').Validator;
+import { Validator } from 'jsonschema';
+import schema = require('../schema/productschema');
 const productRouter = Router();
 
 /**
@@ -38,15 +40,21 @@ productRouter.post(
     '/',
     ash(async (req, res) => {
         const { name, description, type, image, price } = req.body;
-        res.send(
-            await ProductService.addNewProduct(
-                name,
-                description,
-                type,
-                image,
-                price
-            )
-        );
+        const myValidator = new Validator();
+        const validation = myValidator.validate(schema, req.body);
+        if (validation.valid) {
+            res.send(
+                await ProductService.addNewProduct(
+                    name,
+                    description,
+                    type,
+                    image,
+                    price
+                )
+            );
+        } else {
+            res.send(new Error('Format error'));
+        }
     })
 );
 

@@ -1,4 +1,3 @@
-import { OutgoingMessage } from 'http';
 import { getRepository } from 'typeorm';
 import { Order, OrderItem, Product } from '../models';
 import { OrderStatus } from '../enums/OrderStatus.enum';
