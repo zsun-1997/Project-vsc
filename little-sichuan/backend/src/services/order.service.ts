@@ -25,6 +25,7 @@ export default class OrderService {
                 const relatedProduct = getRepository(Product).findOne(
                     item.itemId
                 );
+                console.log(relatedProduct);
                 const newOrderItem = OrderItem.createOrderItem(
                     item.quantity,
                     item.totalPrice

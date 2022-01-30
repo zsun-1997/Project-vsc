@@ -12,7 +12,7 @@ orderRouter.post(
         const { phoneNumber, totalPrice, taxAmount, orderItems } = req.body;
         const myValidator = new Validator();
         const validation = myValidator.validate(schema, req.body);
-        if (validation.valid == false) {
+        if (validation.valid) {
             res.send(
                 await OrderService.PostOrders(
                     phoneNumber,

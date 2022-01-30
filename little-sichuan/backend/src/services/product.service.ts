@@ -4,9 +4,6 @@ import { Product } from '../models';
 import { productRouter } from '../routes';
 import { HttpResponseModel } from '../regularmodule/HttpResponse.model';
 
-var Validator = require('jsonschema').Validator;
-import schema from '../schema/prodct';
-
 export default class ProductService {
     static async addNewProduct(
         name: string,
