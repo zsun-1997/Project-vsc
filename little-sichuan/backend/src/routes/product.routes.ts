@@ -1,9 +1,8 @@
 import { Router } from 'express';
 import ash from 'express-async-handler';
 import ProductService from '../services/product.service';
-//import Validator = require('jsonschema').Validator;
 import { Validator } from 'jsonschema';
-import schema = require('../schema/productschema');
+import schema from '../schema/productschema';
 const productRouter = Router();
 
 /**
@@ -41,8 +40,8 @@ productRouter.post(
     ash(async (req, res) => {
         const { name, description, type, image, price } = req.body;
         const myValidator = new Validator();
-        const validation = myValidator.validate(schema, req.body);
-        if (validation.valid == false) {
+        const validation = myValidator.validate(req.body, schema);
+        if (validation.valid) {
             console.log(validation.instance);
             console.log(validation.valid);
             res.send(

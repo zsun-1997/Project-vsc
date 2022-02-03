@@ -1,4 +1,4 @@
-export const productSchema = {
+const productSchema = {
     type: 'Product',
     properties: {
         name: { type: 'string' },
@@ -9,3 +9,4 @@ export const productSchema = {
     },
     required: ['name', 'description', 'type', 'image', 'price']
 };
+export default productSchema;
