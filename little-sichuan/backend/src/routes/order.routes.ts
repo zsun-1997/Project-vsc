@@ -3,7 +3,7 @@ import ash from 'express-async-handler';
 import { OrderStatus } from '../enums/OrderStatus.enum';
 import OrderService from '../services/order.service';
 import { Validator } from 'jsonschema';
-import schema = require('../schema/orderschema');
+import schema from '../schema/orderschema';
 
 const orderRouter = Router();
 orderRouter.post(
@@ -11,7 +11,8 @@ orderRouter.post(
     ash(async (req, res) => {
         const { phoneNumber, totalPrice, taxAmount, orderItems } = req.body;
         const myValidator = new Validator();
-        const validation = myValidator.validate(schema, req.body);
+        const validation = myValidator.validate(req.body, schema);
+        console.log(validation.valid);
         if (validation.valid) {
             res.send(
                 await OrderService.PostOrders(

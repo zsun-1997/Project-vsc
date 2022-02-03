@@ -12,27 +12,31 @@ export default class OrderService {
         orderItems: OrderItemRequest[]
     ) {
         try {
-            const orderRepository = getRepository(Order);
-            const order = Order.createOrder(
+            const orderRepository = await getRepository(Order);
+            const order = await Order.createOrder(
                 totalPrice,
                 taxAmount,
                 phoneNumber,
                 OrderStatus.ORDER_RECEIVED
             );
             await orderRepository.save(order);
-
+            const promises = [];
             orderItems.forEach(async (item) => {
-                const relatedProduct = getRepository(Product).findOne(
-                    item.itemId
-                );
-                console.log(relatedProduct);
-                const newOrderItem = OrderItem.createOrderItem(
-                    item.quantity,
-                    item.totalPrice
-                );
-                newOrderItem.product = relatedProduct;
-                newOrderItem.order = order;
+                const promise = new Promise(async (resolve, rejects) => {
+                    const relatedProduct = await getRepository(Product).findOne(
+                        item.itemId
+                    );
+                    console.log(relatedProduct);
+                    const newOrderItem = await OrderItem.createOrderItem(
+                        item.quantity,
+                        item.totalPrice
+                    );
+                    newOrderItem.product = relatedProduct;
+                    newOrderItem.order = order;
+                    await getRepository(OrderItem).save(newOrderItem);
+                });
             });
+            return order;
         } catch (error) {
             throw new Error('error');
         }

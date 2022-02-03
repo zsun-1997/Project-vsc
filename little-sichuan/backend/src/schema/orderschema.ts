@@ -1,16 +1,16 @@
-export const orderSchema = {
+const orderSchema = {
     type: 'object',
     properties: {
         phoneNumber: { type: 'string' },
-        totalPrice: { type: 'string' },
-        taxAmount: { type: 'string' },
+        totalPrice: { type: 'number' },
+        taxAmount: { type: 'number' },
         orderItems: {
             type: 'array',
             items: {
                 properties: {
                     itemId: { type: 'string' },
-                    totalPrice: { type: 'string' },
-                    quantity: { type: 'string' }
+                    totalPrice: { type: 'number' },
+                    quantity: { type: 'number' }
                 },
                 required: ['itemId', 'totalPrice', 'quantity']
             }
@@ -18,3 +18,4 @@ export const orderSchema = {
     },
     required: ['totalPrice', 'taxAmount', 'phoneNumber', 'orderItems']
 };
+export default orderSchema;
