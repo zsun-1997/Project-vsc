@@ -1,0 +1,44 @@
+.header {
+    background-color: black;
+    color: white;
+    &__container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0.9rem 1.8rem;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__icon-logo {
+        display: flex;
+        font-size: 20px;
+    }
+    &__icon {
+        width: 40px;
+        height: 18px;
+        padding-right: 0.5em;
+    }
+    &__action {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    &__search-bar {
+        position: relative;
+        padding-right: 3.5rem;
+        display: flex;
+    }
+    &__search-bar-text {
+        border: 1px solid grey;
+        border-radius: 5px;
+        height: 24px;
+        width: 90%;
+        padding: 2px 23px 2px 30px;
+        outline: 0;
+        background-color: #413e3e;
+    }
+    &__search-bar-icon {
+        position: absolute;
+        top: 6px;
+        left: 8px;
+        width: 18px;
+    }
+}

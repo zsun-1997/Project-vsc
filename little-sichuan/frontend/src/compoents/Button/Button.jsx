@@ -5,7 +5,7 @@ const Button = ({ onClick }) => {
         <div className="button">
             <div className="button__container">
                 <button onClick={onClick} className="button__button-element">
-                    This is a button
+                    Cart - 0
                 </button>
             </div>
         </div>
