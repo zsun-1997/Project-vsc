@@ -42,8 +42,6 @@ productRouter.post(
         const myValidator = new Validator();
         const validation = myValidator.validate(req.body, schema);
         if (validation.valid) {
-            console.log(validation.instance);
-            console.log(validation.valid);
             res.send(
                 await ProductService.addNewProduct(
                     name,

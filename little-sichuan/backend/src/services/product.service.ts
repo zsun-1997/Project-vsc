@@ -1,8 +1,7 @@
-import { OutgoingMessage } from 'http';
-import { Double, getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { Product } from '../models';
-import { productRouter } from '../routes';
 import { HttpResponseModel } from '../regularmodule/HttpResponse.model';
+import { ProductIsFeatured } from '../enums/ProductIsFeatured.enum';
 
 export default class ProductService {
     static async addNewProduct(
@@ -14,7 +13,14 @@ export default class ProductService {
     ): Promise<HttpResponseModel> {
         try {
             await getRepository(Product).save(
-                Product.createProduct(name, description, type, image, price)
+                Product.createProduct(
+                    name,
+                    description,
+                    type,
+                    image,
+                    price,
+                    ProductIsFeatured.false
+                )
             );
         } catch (error) {
             throw new Error('Failed to create');

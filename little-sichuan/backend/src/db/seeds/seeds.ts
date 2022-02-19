@@ -16,7 +16,8 @@ createConnection()
                             item['item_desc'],
                             item['type'],
                             item['image'],
-                            item['price']
+                            item['price'],
+                            item['isfeatured']
                         )
                     );
                 });

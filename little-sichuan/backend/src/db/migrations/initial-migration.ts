@@ -37,6 +37,10 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                     {
                         name: 'price',
                         type: 'decimal'
+                    },
+                    {
+                        name: 'isfeatured',
+                        type: 'boolean'
                     }
                 ]
             }),

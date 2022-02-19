@@ -1,5 +1,7 @@
 import { PrimaryGeneratedColumn, Entity, Column, OneToMany } from 'typeorm';
 import OrderItem from './orderItem.model';
+import { ProductIsFeatured } from '../enums/ProductIsFeatured.enum';
+import { number } from 'yup';
 
 /**
  * @swagger
@@ -33,6 +35,9 @@ export default class Product {
     @Column('decimal')
     price: number;
 
+    @Column('boolean')
+    isfeatured: number;
+
     @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
     orderItem: OrderItem[];
 
@@ -41,7 +46,8 @@ export default class Product {
         description: string,
         type: string,
         image: string,
-        price: number
+        price: number,
+        isfeatured: ProductIsFeatured
     ) {
         const product = new Product();
         product.name = name;
@@ -49,6 +55,7 @@ export default class Product {
         product.type = type;
         product.image = image;
         product.price = price;
+        product.isfeatured = isfeatured;
         return product;
     }
 }
