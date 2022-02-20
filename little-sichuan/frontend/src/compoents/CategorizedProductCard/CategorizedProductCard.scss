@@ -1,0 +1,19 @@
+.categorized-product-card {
+    flex-basis: calc(30%);
+    flex-shrink: 1;
+    flex-grow: 1;
+    margin: 1rem;
+
+    &__container {
+        boder: 1px solid black;
+        padding: 1rem;
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem;
+    }
+    @media (max-width: 1026px) {
+        flex-basis: 100%;
+    }
+}

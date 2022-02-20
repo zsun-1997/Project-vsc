@@ -1,9 +1,9 @@
 ﻿item_id,item_name,item_desc,price,image,isfeatured,type,,,,
-00001,Traditional Pork Bun,8 buns per steamer. Stuffed with Ground Pork and Green Onion.,12,P001,1,House Special Stuffed Bun,,,,cold dish
+00001,Traditional Pork Bun,8 buns per steamer. Stuffed with Ground Pork and Green Onion.,12,P001,0,House Special Stuffed Bun,,,,cold dish
 00002,Tianjin Style Vegetable Steamed Bun,"Stuffed with Black Fungus, Cabbage, Carrots, Dried Bean Curd, and Vermicelli. ",8.9,P002,0,House Special Stuffed Bun,,,,
-00003,Fried Dumplings,8 pieces stuffed with pork and cabbage,12,P003,1,Snacks,,,,
-00004,Scallop Fish Maw Chicken Stew Soup,A dish made with scallops and chicken,10,P004,1,Soup,,,,
-00005,Sauteed Shredded Pork with Soy Bean Paste,Served with dry tofu sheets.,21,P005,1,Stir Fired,,,,
+00003,Fried Dumplings,8 pieces stuffed with pork and cabbage,12,P003,0,Snacks,,,,
+00004,Scallop Fish Maw Chicken Stew Soup,A dish made with scallops and chicken,10,P004,0,Soup,,,,
+00005,Sauteed Shredded Pork with Soy Bean Paste,Served with dry tofu sheets.,21,P005,0,Stir Fired,,,,
 00006,House Special Fried Rice with Flying Fish Roe,"Fried rice with flying fish roe and egg is a delicacy with rice, flying fish roe, egg ",17,P006,1,Main,,,,
 00007,Marinated Ground Pork and Kimchi,"Kimchi Pork is a dish made with pork, spicy cabbage, sugar, salt, wine, and scallions.",11.5,P007,1,House Special Stuffed Bun,,,,
 00008,Crab and Pork Steamed Buns,8 PC per order,12,P008,1,House Special Stuffed Bun,,,,

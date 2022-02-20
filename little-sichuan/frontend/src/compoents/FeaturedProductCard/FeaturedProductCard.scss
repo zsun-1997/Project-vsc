@@ -1,8 +1,38 @@
 .featured-product-card {
     flex-basis: calc(50% - 2rem);
-    flex-grow: 1;
     flex-shrink: 1;
-    background: url(../../assets/images/sichuan-food.jpg);
+    flex-grow: 1;
+    margin: 1rem;
+    padding: 0%;
+    -webkit-box-shadow: 13px 15px 0px -1px #9d0e09d9;
+    box-shadow: 13px 15px 0px -1px #9d0e09d9;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        -webkit-box-shadow: 13px 15px 0px -1px #4d0503d9;
+        box-shadow: 13px 15px 0px -1px #530906d9;
+    }
     &__container {
+        border: 1px solid black;
+        padding: 1rem;
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem;
+        font-size: large;
+    }
+    &__image {
+        width: 100%;
+        img {
+            object-fit: cover;
+            object-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+        }
+    }
+    @media (max-width: 1026px) {
+        flex-basis: 100%;
     }
 }
