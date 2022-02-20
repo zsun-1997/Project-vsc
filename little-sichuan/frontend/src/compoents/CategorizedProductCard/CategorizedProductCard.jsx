@@ -1,6 +1,6 @@
 import './CategorizedProductCard.scss';
 import { productImageMapping } from '../../utils/imageUtils';
-const CategorizedProductCard = ({ image, title, price }) => {
+const CategorizedProductCard = ({ image, title, price, description }) => {
     return (
         <button className="categorized-product-card">
             <div className="categorized-product-card__container">
@@ -12,7 +12,7 @@ const CategorizedProductCard = ({ image, title, price }) => {
                         {title}
                     </div>
                     <div className="categorized-product-card__price">
-                        {price}
+                        ${price}
                     </div>
                 </div>
             </div>
