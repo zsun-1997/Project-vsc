@@ -5,15 +5,20 @@ import React, { useState } from 'react';
 
 const FeaturedProductCard = ({ title, price, image, description }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const clickHandler = () => {
+    const handleOpen = () => {
         setIsOpen(!isOpen);
+        //setIsOpen(true);
+    };
+    const handleClose = () => {
+        setIsOpen(false);
     };
     return (
-        <button className="featured-product-card" onClick={clickHandler}>
+        <button className="featured-product-card" onClick={handleOpen}>
             <div className="featured-product-card__pop">
                 {isOpen && (
                     <ProductPopup
-                        closePop={setIsOpen}
+                        prop={setIsOpen}
+                        //onClose={handleClose}
                         title={title}
                         price={price}
                         image={image}

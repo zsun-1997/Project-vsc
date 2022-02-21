@@ -1,10 +1,12 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 import Button from '../../compoents/Button/Button';
 import './Home.scss';
-import { useState, useEffect } from 'react';
 import HomeSectionTitle from '../../compoents/HomeSectionTitle/HomeSectionTitle';
 import FeaturedProductCard from '../../compoents/FeaturedProductCard/FeaturedProductCard';
-import axios from 'axios';
 import CategorizedProductCard from '../../compoents/CategorizedProductCard/CategorizedProductCard';
+import PRODUCT_TYPE from '../../utils/enum.utils.ts';
 const Home = () => {
     const clickHandler = () => {
         // eslint-disable-next-line no-undef
@@ -14,7 +16,7 @@ const Home = () => {
     const [categorizedProducts, setCategorizedProducts] = useState([]);
     useEffect(() => {
         const tmpFeaturedProducts = [];
-        const tmpCategorizedProducts = [];
+        const tmpCategorizedProducts = {};
         var config = {
             method: 'get',
             url: 'http://localhost:3000/api/product',
@@ -41,12 +43,14 @@ const Home = () => {
                 } else {
                     tmpCategorizedProducts[item.type].push(item);
                 }
-                await setFeaturedProducts(tmpFeaturedProducts);
-                await setCategorizedProducts(tmpCategorizedProducts);
             });
+            setFeaturedProducts(tmpFeaturedProducts);
+            setCategorizedProducts(tmpCategorizedProducts);
+            Object.entries(tmpCategorizedProducts).forEach((item) =>
+                console.log(item)
+            );
         };
         fetchData();
-        console.log(categorizedProducts);
     }, []);
     return (
         <div className="home">
@@ -73,34 +77,12 @@ const Home = () => {
                                 />
                             </div>
                             <div className="home__section-content home__section-content--featured">
-                                {featuredProducts &&
-                                    featuredProducts.length > 0 &&
-                                    featuredProducts.map((item, index) => {
-                                        return (
-                                            <FeaturedProductCard
-                                                key={`${item.name}__${index}`}
-                                                title={item.name}
-                                                image={item.image}
-                                                price={item.price}
-                                                description={item.description}
-                                            />
-                                        );
-                                    })}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Cold Dishes"
-                                    secondTitle="冷盘"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Cold Dishes'] &&
-                                    categorizedProducts['Cold Dishes'].length >
-                                        0 &&
-                                    categorizedProducts['Cold Dishes'].map(
-                                        (item, index) => {
+                                <div className="home__section-content-container">
+                                    {featuredProducts &&
+                                        featuredProducts.length > 0 &&
+                                        featuredProducts.map((item, index) => {
                                             return (
-                                                <CategorizedProductCard
+                                                <FeaturedProductCard
                                                     key={`${item.name}__${index}`}
                                                     title={item.name}
                                                     image={item.image}
@@ -110,241 +92,66 @@ const Home = () => {
                                                     }
                                                 />
                                             );
-                                        }
-                                    )}
+                                        })}
+                                </div>
                             </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Dumplings"
-                                    secondTitle="饺子"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Dumplings'] &&
-                                    categorizedProducts['Dumplings'].length >
-                                        0 &&
-                                    categorizedProducts['Dumplings'].map(
-                                        (item, index) => {
-                                            return (
-                                                <CategorizedProductCard
-                                                    key={`${item.name}__${index}`}
-                                                    title={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    description={
-                                                        item.description
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Feast Zone"
-                                    secondTitle="盛宴"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Feast Zone'] &&
-                                    categorizedProducts['Feast Zone'].length >
-                                        0 &&
-                                    categorizedProducts['Feast Zone'].map(
-                                        (item, index) => {
-                                            return (
-                                                <CategorizedProductCard
-                                                    key={`${item.name}__${index}`}
-                                                    title={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    description={
-                                                        item.description
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="House Special Stuffed Bun"
-                                    secondTitle="特制馅料包子"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts[
-                                    'House Special Stuffed Bun'
-                                ] &&
-                                    categorizedProducts[
-                                        'House Special Stuffed Bun'
-                                    ].length > 0 &&
-                                    categorizedProducts[
-                                        'House Special Stuffed Bun'
-                                    ].map((item, index) => {
-                                        return (
-                                            <CategorizedProductCard
-                                                key={`${item.name}__${index}`}
-                                                title={item.name}
-                                                image={item.image}
-                                                price={item.price}
-                                                description={item.description}
-                                            />
-                                        );
-                                    })}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Main"
-                                    secondTitle="主菜"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Main'] &&
-                                    categorizedProducts['Main'].length > 0 &&
-                                    categorizedProducts['Main'].map(
-                                        (item, index) => {
-                                            return (
-                                                <CategorizedProductCard
-                                                    key={`${item.name}__${index}`}
-                                                    title={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    description={
-                                                        item.description
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Snacks"
-                                    secondTitle="小吃"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Snacks'] &&
-                                    categorizedProducts['Snacks'].length > 0 &&
-                                    categorizedProducts['Snacks'].map(
-                                        (item, index) => {
-                                            return (
-                                                <CategorizedProductCard
-                                                    key={`${item.name}__${index}`}
-                                                    title={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    description={
-                                                        item.description
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Soup"
-                                    secondTitle="汤"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Soup'] &&
-                                    categorizedProducts['Soup'].length > 0 &&
-                                    categorizedProducts['Soup'].map(
-                                        (item, index) => {
-                                            return (
-                                                <CategorizedProductCard
-                                                    key={`${item.name}__${index}`}
-                                                    title={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    description={
-                                                        item.description
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Special Dessert"
-                                    secondTitle="特制甜点"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Special Dessert'] &&
-                                    categorizedProducts['Special Dessert']
-                                        .length > 0 &&
-                                    categorizedProducts['Special Dessert'].map(
-                                        (item, index) => {
-                                            return (
-                                                <CategorizedProductCard
-                                                    key={`${item.name}__${index}`}
-                                                    title={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    description={
-                                                        item.description
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Stir Fired"
-                                    secondTitle="炸物"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Stir Fired'] &&
-                                    categorizedProducts['Stir Fired'].length >
-                                        0 &&
-                                    categorizedProducts['Stir Fired'].map(
-                                        (item, index) => {
-                                            return (
-                                                <CategorizedProductCard
-                                                    key={`${item.name}__${index}`}
-                                                    title={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    description={
-                                                        item.description
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-                            </div>
-                            <div className="home__section-title">
-                                <HomeSectionTitle
-                                    firstTitle="Vegetarian"
-                                    secondTitle="蔬菜"
-                                />
-                            </div>
-                            <div className="home__section-content home__section-content--categorized">
-                                {categorizedProducts['Vegetarian'] &&
-                                    categorizedProducts['Vegetarian'].length >
-                                        0 &&
-                                    categorizedProducts['Vegetarian'].map(
-                                        (item, index) => {
-                                            return (
-                                                <CategorizedProductCard
-                                                    key={`${item.name}__${index}`}
-                                                    title={item.name}
-                                                    image={item.image}
-                                                    price={item.price}
-                                                    description={
-                                                        item.description
-                                                    }
-                                                />
-                                            );
-                                        }
-                                    )}
-                            </div>
+                            {Object.entries(categorizedProducts) &&
+                                Object.entries(categorizedProducts).length >
+                                    0 &&
+                                Object.entries(categorizedProducts).map(
+                                    (entry, index) =>
+                                        entry[1] &&
+                                        entry[1].length > 0 && (
+                                            <div key={`${entry[0]} --${index}`}>
+                                                <div className="home__section-title">
+                                                    <HomeSectionTitle
+                                                        firstTitle={entry[0]}
+                                                        secondTitle={
+                                                            PRODUCT_TYPE[
+                                                                entry[0]
+                                                            ]
+                                                        }
+                                                    />
+                                                </div>
+                                                <div className="home__section-content home__section-content--categorized">
+                                                    <div className="home__section-content-container">
+                                                        {categorizedProducts[
+                                                            'Cold Dishes'
+                                                        ] &&
+                                                            categorizedProducts[
+                                                                'Cold Dishes'
+                                                            ].length > 0 &&
+                                                            categorizedProducts[
+                                                                'Cold Dishes'
+                                                            ].map(
+                                                                (
+                                                                    item,
+                                                                    index
+                                                                ) => {
+                                                                    return (
+                                                                        <CategorizedProductCard
+                                                                            key={`${item.name}__${index}`}
+                                                                            title={
+                                                                                item.name
+                                                                            }
+                                                                            image={
+                                                                                item.image
+                                                                            }
+                                                                            price={
+                                                                                item.price
+                                                                            }
+                                                                            description={
+                                                                                item.description
+                                                                            }
+                                                                        />
+                                                                    );
+                                                                }
+                                                            )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                )}
                         </div>
                     </div>
                 </div>

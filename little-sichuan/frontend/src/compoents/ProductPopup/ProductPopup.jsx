@@ -1,6 +1,6 @@
 import './ProductPopup.scss';
 import { productImageMapping } from '../../utils/imageUtils';
-const ProductPopup = ({ title, price, description, image, closePop }) => {
+const ProductPopup = ({ title, price, description, image, prop, onClose }) => {
     console.log(description);
     return (
         <div className="product-popup">
@@ -10,7 +10,7 @@ const ProductPopup = ({ title, price, description, image, closePop }) => {
                     <div className="product-popup__close-icon">
                         <button
                             className="product-popup__close-icon-btn"
-                            onClick={() => closePop(false)}
+                            onClick={() => prop(false)}
                         >
                             X
                         </button>
@@ -22,7 +22,11 @@ const ProductPopup = ({ title, price, description, image, closePop }) => {
                 </div>
                 <div className="product-popup__settlement">
                     <div className="product-popup__count">count</div>
-                    <div className="product-popup__add">add</div>
+                    <div className="product-popup__add">
+                        <button className="product-popup__add-item">
+                            Add To Cart
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
