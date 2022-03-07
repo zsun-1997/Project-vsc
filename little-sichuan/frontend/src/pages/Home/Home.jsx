@@ -1,17 +1,12 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-import Button from '../../compoents/Button/Button';
 import './Home.scss';
 import HomeSectionTitle from '../../compoents/HomeSectionTitle/HomeSectionTitle';
 import FeaturedProductCard from '../../compoents/FeaturedProductCard/FeaturedProductCard';
 import CategorizedProductCard from '../../compoents/CategorizedProductCard/CategorizedProductCard';
 import PRODUCT_TYPE from '../../utils/enum.utils.ts';
 const Home = () => {
-    const clickHandler = () => {
-        // eslint-disable-next-line no-undef
-        //window.alert('Clicked button');
-    };
     const [featuredProducts, setFeaturedProducts] = useState([]);
     const [categorizedProducts, setCategorizedProducts] = useState([]);
     useEffect(() => {
@@ -115,38 +110,30 @@ const Home = () => {
                                                 </div>
                                                 <div className="home__section-content home__section-content--categorized">
                                                     <div className="home__section-content-container">
-                                                        {categorizedProducts[
-                                                            'Cold Dishes'
-                                                        ] &&
-                                                            categorizedProducts[
-                                                                'Cold Dishes'
-                                                            ].length > 0 &&
-                                                            categorizedProducts[
-                                                                'Cold Dishes'
-                                                            ].map(
-                                                                (
-                                                                    item,
-                                                                    index
-                                                                ) => {
-                                                                    return (
-                                                                        <CategorizedProductCard
-                                                                            key={`${item.name}__${index}`}
-                                                                            title={
-                                                                                item.name
-                                                                            }
-                                                                            image={
-                                                                                item.image
-                                                                            }
-                                                                            price={
-                                                                                item.price
-                                                                            }
-                                                                            description={
-                                                                                item.description
-                                                                            }
-                                                                        />
-                                                                    );
-                                                                }
-                                                            )}
+                                                        {entry[1].map(
+                                                            (
+                                                                item,
+                                                                itemIndex
+                                                            ) => {
+                                                                return (
+                                                                    <CategorizedProductCard
+                                                                        key={`${item.name}__${itemIndex}`}
+                                                                        title={
+                                                                            item.name
+                                                                        }
+                                                                        image={
+                                                                            item.image
+                                                                        }
+                                                                        price={
+                                                                            item.price
+                                                                        }
+                                                                        description={
+                                                                            item.description
+                                                                        }
+                                                                    />
+                                                                );
+                                                            }
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>

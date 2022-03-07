@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99;
     &__container {
         position: relative;
         padding: 32px;
@@ -24,11 +25,12 @@
         font-weight: bold;
     }
     &__close-icon {
-        border: none;
+        border: 0;
         padding-bottom: 5px;
     }
     &__close-icon-btn {
         border: none;
+        background-color: white;
     }
     &__description {
         margin: 1rem;
@@ -38,14 +40,67 @@
     }
     &__image {
         width: 100%;
-
         img {
             object-fit: cover;
             object-position: center;
+            width: 100%;
         }
     }
     &__settlement {
         display: flex;
         justify-content: space-between;
+    }
+    &__count-container {
+        display: flex;
+        justify-content: space-between;
+        width: 7rem;
+        padding: 1.5rem 0;
+    }
+    &__count-less {
+        border: 0px;
+        background-color: lightgrey;
+        width: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background-color: rgb(199, 195, 195);
+        }
+    }
+    &__count-item-number {
+        padding-top: 3.5px;
+    }
+    &__count-add {
+        border: 0px;
+        background-color: lightgrey;
+        width: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background-color: rgb(199, 195, 195);
+        }
+    }
+
+    &__add-to-cart {
+        padding: 1.5rem 0;
+        width: 22rem;
+        margin-left: 2rem;
+        box-sizing: border-box;
+    }
+    &__add-item-container {
+        display: flex;
+        width: 22rem;
+        height: 2rem;
+        border: 0;
+        border-radius: 20px;
+        background-color: black;
+        color: white;
+        justify-content: center;
+        cursor: pointer;
+    }
+    &__add-item {
+        margin: 0.5rem auto;
+    }
+    &__add-item-price {
+        margin: 0.5rem 0.5rem;
     }
 }

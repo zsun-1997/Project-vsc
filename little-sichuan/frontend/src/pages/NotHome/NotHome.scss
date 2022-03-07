@@ -1,0 +1,68 @@
+.not-home {
+    background-color: rgb(236, 235, 235);
+    &__container {
+        height: 100vh;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        background-color: white;
+        max-width: 1280px;
+    }
+    &__order-title {
+        display: flex;
+        font-size: xx-large;
+        font-weight: 500;
+        margin: 3rem 3rem 1rem 3rem;
+    }
+    &__order-list {
+        display: flex;
+        flex-direction: column;
+        margin: 0 3rem;
+    }
+    &__subtotal {
+        display: flex;
+        margin: 1rem 3rem;
+        justify-content: space-between;
+        width: 350px;
+    }
+    &__taxes {
+        display: flex;
+        margin: 0rem 3rem 1rem 3rem;
+        padding-bottom: 1.5rem;
+        justify-content: space-between;
+        width: 350px;
+        border-bottom: 1px solid gray;
+    }
+    &__total {
+        display: flex;
+        margin: 0rem 3rem;
+        justify-content: space-between;
+        width: 350px;
+
+        font-size: large;
+        font-weight: 600;
+    }
+    &__tip {
+        display: flex;
+        margin: 1rem 3rem;
+        width: 350px;
+    }
+    &__input {
+        display: flex;
+        margin: 1rem 3rem;
+        width: 340px;
+        box-sizing: border-box;
+    }
+    &__button {
+        margin: 1rem 3rem;
+        width: 350px;
+        height: 2rem;
+        background-color: black;
+        color: white;
+        border: 0ch;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: large;
+    }
+}

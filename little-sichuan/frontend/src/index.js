@@ -4,11 +4,17 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ModalProvider } from './context/Modal.context';
+import Context from './context/Context';
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App />
+            <Context>
+                <ModalProvider>
+                    <App />
+                </ModalProvider>
+            </Context>
         </BrowserRouter>
     </React.StrictMode>,
     // eslint-disable-next-line no-undef
