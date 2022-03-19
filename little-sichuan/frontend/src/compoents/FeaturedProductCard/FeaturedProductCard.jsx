@@ -5,9 +5,11 @@ import { productImageMapping } from '../../utils/imageUtils';
 import ProductPopup from '../ProductPopup/ProductPopup';
 import { ModalConsumer } from '../../context/Modal.context';
 
-const FeaturedProductCard = ({ title, price, image, description }) => {
+const FeaturedProductCard = ({ id, title, price, image, description }) => {
+    console.log(id);
     const renderModalComponent = (
         toggleModal,
+        id,
         title,
         price,
         image,
@@ -16,6 +18,7 @@ const FeaturedProductCard = ({ title, price, image, description }) => {
         return (
             <ProductPopup
                 toggleModal={toggleModal}
+                id={id}
                 title={title}
                 price={price}
                 image={image}
@@ -33,6 +36,7 @@ const FeaturedProductCard = ({ title, price, image, description }) => {
                         toggleModal(
                             renderModalComponent(
                                 toggleModal,
+                                id,
                                 title,
                                 price,
                                 image,

@@ -54,7 +54,7 @@ const Home = () => {
                     <div className="home__hero-container">
                         <div className="home__hero-title-box">
                             <div className="home__hero-title">
-                                Authentic home style sichuanese food
+                                Authentic Home Style Sichuanese Food
                             </div>
                             <div className="home__hero-subtitle">
                                 open everyday from 11am to 10pm
@@ -79,6 +79,7 @@ const Home = () => {
                                             return (
                                                 <FeaturedProductCard
                                                     key={`${item.name}__${index}`}
+                                                    id={item.id}
                                                     title={item.name}
                                                     image={item.image}
                                                     price={item.price}
@@ -118,6 +119,9 @@ const Home = () => {
                                                                 return (
                                                                     <CategorizedProductCard
                                                                         key={`${item.name}__${itemIndex}`}
+                                                                        id={
+                                                                            item.id
+                                                                        }
                                                                         title={
                                                                             item.name
                                                                         }

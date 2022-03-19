@@ -22,4 +22,9 @@
         color: red;
         margin-left: 0.9em;
     }
+    @media (max-width: 1026px) {
+        &__container {
+            padding: 0;
+        }
+    }
 }

@@ -1,26 +1,51 @@
 import React, { useContext } from 'react';
 import { cartContext } from '../../context/Context';
+import { Select, MenuItem, FormControl, Box } from '@material-ui/core';
 
 import './CartList.scss';
-const CartList = ({ title, count, price }) => {
+const CartList = ({ title, count, price, id, cssClass }) => {
     const { cart, setCart } = useContext(cartContext);
-
+    console.log(id);
     const clickHandle = () => {
-        var array = cart;
-        cart.map((item) => {
-            if (item.title == title) {
-                var index = array.indexOf(item);
-                array.splice(index, 1);
-                setCart(array);
-            }
-        });
+        const deletedCart = cart.filter((item) => item.id !== id);
+        setCart(deletedCart);
+    };
+    const handleChange = (event) => {
+        const updatedcartCount = cart.filter((item) =>
+            item.id === id ? (item.count = event.target.value) : item.count
+        );
+        setCart(updatedcartCount);
     };
 
     return (
         <div className="cartlist">
-            <div className="cartlist__container">
+            <div
+                className={`cartlist__container cartlist__container--${cssClass}`}
+            >
                 <div className="cartlist__ct-part">
-                    <div className="cartlist__count">{count}</div>
+                    <div className="cartlist__count">
+                        <Box sx={{ minWidth: 30 }}>
+                            <FormControl fullWidth>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={count}
+                                    label="Count"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={1}>1</MenuItem>
+                                    <MenuItem value={2}>2</MenuItem>
+                                    <MenuItem value={3}>3</MenuItem>
+                                    <MenuItem value={4}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
+                                    <MenuItem value={6}>6</MenuItem>
+                                    <MenuItem value={7}>7</MenuItem>
+                                    <MenuItem value={8}>8</MenuItem>
+                                    <MenuItem value={9}>9</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </div>
                     <div className="cartlist__title">{title}</div>
                 </div>
                 <div className="cartlist__pt-part">

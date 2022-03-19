@@ -19,10 +19,10 @@ export default class OrderService {
                 phoneNumber,
                 OrderStatus.ORDER_RECEIVED
             );
+
             await orderRepository.save(order);
-            const promises = [];
-            orderItems.forEach(async (item) => {
-                const promise = new Promise(async (resolve, rejects) => {
+            Promise.all(
+                orderItems.map(async (item) => {
                     const relatedProduct = await getRepository(Product).findOne(
                         item.itemId
                     );
@@ -34,9 +34,14 @@ export default class OrderService {
                     newOrderItem.product = relatedProduct;
                     newOrderItem.order = order;
                     await getRepository(OrderItem).save(newOrderItem);
+                })
+            )
+                .then(() => {
+                    return order;
+                })
+                .catch((err) => {
+                    throw err;
                 });
-            });
-            return order;
         } catch (error) {
             throw new Error('error');
         }

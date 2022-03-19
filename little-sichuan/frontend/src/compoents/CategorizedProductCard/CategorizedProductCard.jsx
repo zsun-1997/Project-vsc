@@ -5,9 +5,10 @@ import { productImageMapping } from '../../utils/imageUtils';
 import ProductPopup from '../ProductPopup/ProductPopup';
 import { ModalConsumer } from '../../context/Modal.context';
 
-const CategorizedProductCard = ({ image, title, price, description }) => {
+const CategorizedProductCard = ({ id, image, title, price, description }) => {
     const renderModalComponent = (
         toggleModal,
+        id,
         title,
         price,
         image,
@@ -16,6 +17,7 @@ const CategorizedProductCard = ({ image, title, price, description }) => {
         return (
             <ProductPopup
                 toggleModal={toggleModal}
+                id={id}
                 title={title}
                 price={price}
                 image={image}
@@ -33,6 +35,7 @@ const CategorizedProductCard = ({ image, title, price, description }) => {
                         toggleModal(
                             renderModalComponent(
                                 toggleModal,
+                                id,
                                 title,
                                 price,
                                 image,

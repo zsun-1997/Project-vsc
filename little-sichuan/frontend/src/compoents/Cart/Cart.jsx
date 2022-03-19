@@ -8,6 +8,7 @@ import CartList from '../CartList/CartList.jsx';
 
 const Cart = ({ cartOpen, setCartOpen }) => {
     const { cart } = useContext(cartContext);
+    cart.map((item) => console.log(item));
     let total = 0;
     const clickHandle = () => {
         setCartOpen(false);
@@ -38,6 +39,7 @@ const Cart = ({ cartOpen, setCartOpen }) => {
                                 return (
                                     <CartList
                                         key={`${item.title}__${index}`}
+                                        id={item.id}
                                         title={item.title}
                                         price={item.price}
                                         count={item.count}

@@ -4,18 +4,38 @@ import './ProductPopup.scss';
 import { productImageMapping } from '../../utils/imageUtils';
 import { cartContext } from '../../context/Context';
 
-const ProductPopup = ({ title, price, description, image, toggleModal }) => {
+const ProductPopup = ({
+    id,
+    title,
+    price,
+    description,
+    image,
+    toggleModal
+}) => {
+    console.log(id);
     const [count, setCount] = useState(1);
     const { cart, setCart } = useContext(cartContext);
-    var cartData = { title, price, count };
+    var cartData = { id, title, price, count };
     const clickHandle = () => {
-        var checkedCartData = cartData;
-        cart.map((item) => {
-            if (item.title == title) {
-                item.count = item.count + 1;
+        if (cart.length > 0) {
+            let isDuplicate = false;
+            const updatedCart = cart.map((item) => {
+                const updatedItem = Object.assign(item);
+                if (updatedItem.id === id) {
+                    updatedItem.count += count;
+                    isDuplicate = true;
+                }
+                return updatedItem;
+            });
+            if (isDuplicate) {
+                setCart(updatedCart);
+            } else {
+                setCart([...cart, cartData]);
             }
-        });
-        setCart((cart) => [...cart, cartData]);
+        } else {
+            setCart([cartData]);
+        }
+        toggleModal();
     };
 
     return (

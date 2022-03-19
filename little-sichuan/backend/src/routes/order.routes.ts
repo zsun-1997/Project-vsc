@@ -10,8 +10,10 @@ orderRouter.post(
     '/',
     ash(async (req, res) => {
         const { phoneNumber, totalPrice, taxAmount, orderItems } = req.body;
+
         const myValidator = new Validator();
         const validation = myValidator.validate(req.body, schema);
+        console.log(validation.valid);
         if (validation.valid) {
             res.send(
                 await OrderService.PostOrders(
