@@ -1,2 +1,7 @@
-.page-template {
+.page {
+    &__header {
+        position: sticky;
+        top: 0;
+        z-index: 98;
+    }
 }
