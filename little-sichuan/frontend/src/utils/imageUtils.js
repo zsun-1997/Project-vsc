@@ -30,28 +30,6 @@ import p029 from '../assets/images/P029.jpg';
 import p030 from '../assets/images/P030.jpg';
 import p031 from '../assets/images/P031.jpg';
 import p032 from '../assets/images/P032.jpg';
-import p033 from '../assets/images/P033.jpg';
-import p034 from '../assets/images/P034.jpg';
-import p035 from '../assets/images/P035.jpg';
-import p036 from '../assets/images/P036.jpg';
-import p037 from '../assets/images/P037.jpg';
-import p038 from '../assets/images/P038.jpg';
-import p039 from '../assets/images/P039.jpg';
-import p040 from '../assets/images/P040.jpg';
-import p041 from '../assets/images/P041.jpg';
-import p042 from '../assets/images/P042.jpg';
-import p043 from '../assets/images/P043.jpg';
-import p044 from '../assets/images/P044.jpg';
-import p045 from '../assets/images/P045.jpg';
-import p046 from '../assets/images/P046.jpg';
-import p047 from '../assets/images/P047.jpg';
-import p048 from '../assets/images/P048.jpg';
-import p049 from '../assets/images/P049.jpg';
-import p050 from '../assets/images/P050.jpg';
-import p051 from '../assets/images/P051.jpg';
-import p052 from '../assets/images/P052.jpg';
-import p053 from '../assets/images/P053.jpg';
-import p054 from '../assets/images/P054.jpg';
 
 const productImageMapping = {
     P001: p001,
@@ -85,29 +63,7 @@ const productImageMapping = {
     P029: p029,
     P030: p030,
     P031: p031,
-    P032: p032,
-    P033: p033,
-    P034: p034,
-    P035: p035,
-    P036: p036,
-    P037: p037,
-    P038: p038,
-    P039: p039,
-    P040: p040,
-    P041: p041,
-    P042: p042,
-    P043: p043,
-    P044: p044,
-    P045: p045,
-    P046: p046,
-    P047: p047,
-    P048: p048,
-    P049: p049,
-    P050: p050,
-    P051: p051,
-    P052: p052,
-    P053: p053,
-    P054: p054
+    P032: p032
 };
 
 export { productImageMapping };

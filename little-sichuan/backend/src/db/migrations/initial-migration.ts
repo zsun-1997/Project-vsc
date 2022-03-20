@@ -36,7 +36,7 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                     },
                     {
                         name: 'price',
-                        type: 'decimal'
+                        type: 'decimal(8,2)'
                     },
                     {
                         name: 'isfeatured',
@@ -62,7 +62,7 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                     },
                     {
                         name: 'itemtotalPrice',
-                        type: 'decimal'
+                        type: 'decimal(8,2)'
                     }
                 ]
             }),
@@ -85,11 +85,11 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                     },
                     {
                         name: 'totalPrice',
-                        type: 'decimal'
+                        type: 'decimal(8,2)'
                     },
                     {
                         name: 'taxAmount',
-                        type: 'decimal'
+                        type: 'decimal(8,2)'
                     },
                     {
                         name: 'phoneNumber',

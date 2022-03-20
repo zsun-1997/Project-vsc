@@ -35,7 +35,7 @@ const NotHome = () => {
         var data = JSON.stringify(payload);
         var config = {
             method: 'post',
-            url: 'http://localhost:3000/api/order',
+            url: 'http://localhost:2000/api/order',
             headers: {
                 Authorization:
                     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o',

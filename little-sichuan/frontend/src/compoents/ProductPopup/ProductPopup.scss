@@ -40,7 +40,9 @@
     }
     &__image {
         width: 100%;
+        position: relative;
         img {
+            min-height: 200px;
             object-fit: cover;
             object-position: center;
             width: 100%;
