@@ -1,12 +1,12 @@
 {
     "type": "mysql",
-    "host": "localhost",
+    "host": "little-sichuan-db.cj2azfrxfbfa.ca-central-1.rds.amazonaws.com",
     "port": 3306,
-    "username": "root",
-    "password": "password",
+    "username": "admin",
+    "password": "little-sichuan",
     "database": "little-sichuan",
     "entities": ["src/models/**/*.model.ts"],
-    "seeds": [ "src/db/seeds/**/*{.ts,.js}" ],
+    "seeds": ["src/db/seeds/**/*{.ts,.js}"],
     "migrations": ["src/db/migrations/**/*.ts"],
     "cli": {
         "entitiesDir": "src/models",

@@ -14,7 +14,7 @@ const Home = () => {
         const tmpCategorizedProducts = {};
         var config = {
             method: 'get',
-            url: 'http://localhost:2000/api/product',
+            url: 'ec2-35-182-70-15.ca-central-1.compute.amazonaws.com/api/product',
             headers: {
                 Authorization:
                     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o',
