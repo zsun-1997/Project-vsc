@@ -24,7 +24,7 @@ const {
 };
 
 // all values exported should be in the correct type, i.e. not all strings
-const port = PORT ? Number(PORT) : 3000;
+const port = PORT ? Number(PORT) : 2000;
 const cors = boolean(USE_CORS);
 const secure = boolean(SECURE_COOKIE);
 const sameSite = SAME_SITE_COOKIE as boolean | 'strict' | 'none' | 'lax'; // must be one of these
