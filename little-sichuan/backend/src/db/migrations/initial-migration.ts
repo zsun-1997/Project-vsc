@@ -124,7 +124,7 @@ export class InitialMigration1641677200652 implements MigrationInterface {
         );
 
         await queryRunner.addColumn(
-            'Orderitem',
+            'OrderItem',
             new TableColumn({
                 name: 'orderId',
                 type: 'varchar',
