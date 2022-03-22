@@ -33,12 +33,10 @@ export default class OrderItem {
 
     @ManyToOne(() => Product, (product) => product.orderItem)
     @JoinColumn()
-    //prodctId: Product;
     product: Product;
 
     @ManyToOne(() => Order, (order) => order.orderItem)
     @JoinColumn()
-    //orderId: Order;
     order: Order;
 
     static createOrderItem(quantity: number, ItemtotalPrice: number) {

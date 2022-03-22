@@ -19,7 +19,7 @@ export default class OrderService {
                 phoneNumber,
                 OrderStatus.ORDER_RECEIVED
             );
-            console.log(order);
+            console.log(orderRepository.save(order));
             await orderRepository.save(order);
             Promise.all(
                 orderItems.map(async (item) => {
