@@ -19,10 +19,8 @@ export default class OrderService {
                 phoneNumber,
                 OrderStatus.ORDER_RECEIVED
             );
-
+            console.log(order);
             await orderRepository.save(order);
-            console.log(orderRepository.save(order));
-            console.log(test);
             Promise.all(
                 orderItems.map(async (item) => {
                     const relatedProduct = await getRepository(Product).findOne(
