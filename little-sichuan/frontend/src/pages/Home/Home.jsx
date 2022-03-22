@@ -14,7 +14,7 @@ const Home = () => {
         const tmpCategorizedProducts = {};
         var config = {
             method: 'get',
-            url: 'ec2-35-182-70-15.ca-central-1.compute.amazonaws.com/api/product',
+            url: 'http://ec2-35-182-70-15.ca-central-1.compute.amazonaws.com/api/product',
             headers: {
                 Authorization:
                     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o',
@@ -24,7 +24,6 @@ const Home = () => {
         const fetchData = async () => {
             const productsData = await axios(config)
                 .then(function (response) {
-                    console.log(response.data);
                     return response.data;
                 })
                 .catch(function (error) {
@@ -41,9 +40,9 @@ const Home = () => {
             });
             setFeaturedProducts(tmpFeaturedProducts);
             setCategorizedProducts(tmpCategorizedProducts);
-            Object.entries(tmpCategorizedProducts).forEach((item) =>
-                console.log(item)
-            );
+            // Object.entries(tmpCategorizedProducts).forEach((item) =>
+            //     console.log(item)
+            // );
         };
         fetchData();
     }, []);

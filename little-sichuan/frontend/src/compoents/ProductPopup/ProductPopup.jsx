@@ -12,7 +12,6 @@ const ProductPopup = ({
     image,
     toggleModal
 }) => {
-    console.log(id);
     const [count, setCount] = useState(1);
     const { cart, setCart } = useContext(cartContext);
     var cartData = { id, title, price, count };

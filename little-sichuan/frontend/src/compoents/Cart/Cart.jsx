@@ -8,7 +8,6 @@ import CartList from '../CartList/CartList.jsx';
 
 const Cart = ({ cartOpen, setCartOpen }) => {
     const { cart } = useContext(cartContext);
-    cart.map((item) => console.log(item));
     let total = 0;
     const clickHandle = () => {
         setCartOpen(false);

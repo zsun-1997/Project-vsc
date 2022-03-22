@@ -6,7 +6,6 @@ import ProductPopup from '../ProductPopup/ProductPopup';
 import { ModalConsumer } from '../../context/Modal.context';
 
 const FeaturedProductCard = ({ id, title, price, image, description }) => {
-    console.log(id);
     const renderModalComponent = (
         toggleModal,
         id,

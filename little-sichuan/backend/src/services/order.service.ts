@@ -43,7 +43,7 @@ export default class OrderService {
                     throw err;
                 });
         } catch (error) {
-            throw new Error('error');
+            throw new Error('Post Order failed');
         }
     }
     static async UpdateStatus(id: string, status: OrderStatus) {

@@ -7,7 +7,6 @@ const Header = () => {
     const [cartOpen, setCartOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const clickHandle = () => {
-        console.log(cartOpen);
         setCartOpen(!cartOpen);
     };
     const { cart } = useContext(cartContext);

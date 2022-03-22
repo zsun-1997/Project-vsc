@@ -5,7 +5,6 @@ import { Select, MenuItem, FormControl, Box } from '@material-ui/core';
 import './CartList.scss';
 const CartList = ({ title, count, price, id, cssClass }) => {
     const { cart, setCart } = useContext(cartContext);
-    console.log(id);
     const clickHandle = () => {
         const deletedCart = cart.filter((item) => item.id !== id);
         setCart(deletedCart);
