@@ -13,8 +13,6 @@ export default class OrderService {
     ) {
         try {
             const orderRepository = await getRepository(Order);
-            console.log(orderRepository);
-            console.log(test);
             const order = await Order.createOrder(
                 totalPrice,
                 taxAmount,
@@ -23,6 +21,8 @@ export default class OrderService {
             );
 
             await orderRepository.save(order);
+            console.log(orderRepository.save(order));
+            console.log(test);
             Promise.all(
                 orderItems.map(async (item) => {
                     const relatedProduct = await getRepository(Product).findOne(
