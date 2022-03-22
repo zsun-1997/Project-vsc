@@ -13,6 +13,8 @@ export default class OrderService {
     ) {
         try {
             const orderRepository = await getRepository(Order);
+            console.log(orderRepository);
+            console.log(test);
             const order = await Order.createOrder(
                 totalPrice,
                 taxAmount,
