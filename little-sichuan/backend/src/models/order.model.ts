@@ -20,7 +20,7 @@ import OrderItem from './orderItem.model';
  *              name:
  *                  type: string
  */
-@Entity()
+@Entity('Order')
 export default class Order {
     @PrimaryGeneratedColumn('uuid')
     id: string;
