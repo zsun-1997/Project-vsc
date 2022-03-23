@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { cartContext } from '../../context/Context';
-import Popup from 'reactjs-popup';
 import axios from 'axios';
 import CartList from '../../compoents/CartList/CartList';
+import SubmitPopup from '../../compoents/SubmitPopup/SubmitPopup';
 import './NotHome.scss';
 
 const NotHome = () => {
     const { cart } = useContext(cartContext);
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+    const [buttonPopup, setButtonPopup] = useState(false);
     let subTotal = 0;
     let taxAmount = 0;
     let totalPrice = 0;
@@ -47,7 +47,7 @@ const NotHome = () => {
         axios(config)
             .then(function (response) {
                 //console.log(JSON.stringify(response.data));
-                setIsSubmitSuccessful(true);
+                setButtonPopup(true);
             })
             .catch(function (error) {
                 console.log(error);
@@ -105,21 +105,16 @@ const NotHome = () => {
                         }}
                     />
                 </div>
-                <Popup
-                    trigger={
-                        <button
-                            className="not-home__button"
-                            onClick={() => submitHandler()}
-                        >
-                            SUBMIT ORDER
-                        </button>
-                    }
-                    position="center center"
+                <button
+                    className="not-home__button"
+                    onClick={() => submitHandler()}
                 >
-                    <div>Popup content here !!</div>
-                </Popup>
-
-                {isSubmitSuccessful && <div>Submit Successful</div>}
+                    SUBMIT ORDER
+                </button>
+                <SubmitPopup
+                    trigger={buttonPopup}
+                    setTrigger={setButtonPopup}
+                />
             </div>
         </div>
     );
