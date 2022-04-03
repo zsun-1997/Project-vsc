@@ -2,8 +2,6 @@ import {
     PrimaryGeneratedColumn,
     Entity,
     Column,
-    Double,
-    OneToOne,
     JoinColumn,
     ManyToOne
 } from 'typeorm';
@@ -27,35 +25,26 @@ export default class OrderItem {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column('uuid')
-    productId: string;
-
     @Column('int')
     quantity: number;
 
     @Column('decimal')
-    totalPrice: number;
+    ItemtotalPrice: number;
 
-    @Column('uuid')
-    orderId: string;
-
-    @OneToOne(() => Product, (product) => product.orderItem)
+    @ManyToOne(() => Product, (product) => product.orderItem)
     @JoinColumn()
+    //prodctId: Product;
     product: Product;
 
     @ManyToOne(() => Order, (order) => order.orderItem)
+    @JoinColumn()
+    //orderId: Order;
     order: Order;
 
-    static createOrderItem(
-        productId: string,
-        quantity: number,
-        totalPrice: number,
-        orderId: string
-    ) {
+    static createOrderItem(quantity: number, ItemtotalPrice: number) {
         const orderItem = new OrderItem();
-        orderItem.productId = productId;
         orderItem.quantity = quantity;
-        orderItem.totalPrice = totalPrice;
-        orderItem.orderId = orderId;
+        orderItem.ItemtotalPrice = ItemtotalPrice;
+        return orderItem;
     }
 }

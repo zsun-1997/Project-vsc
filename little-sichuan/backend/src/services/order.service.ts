@@ -1,69 +1,62 @@
-import { OutgoingMessage } from 'http';
-import { Double, getRepository, Repository } from 'typeorm';
-import { Order, OrderItem } from '../models';
+import { getRepository } from 'typeorm';
+import { Order, OrderItem, Product } from '../models';
+import { OrderStatus } from '../enums/OrderStatus.enum';
+import { OrderItemRequest } from '../regularmodule/OrderItemRequest';
+import { HttpResponseModel } from '../regularmodule/HttpResponse.model';
 
 export default class OrderService {
     static async PostOrders(
         phoneNumber: string,
         totalPrice: number,
         taxAmount: number,
-        productId: string,
-        quantity: number,
-        item_totalPrice: number
+        orderItems: OrderItemRequest[]
     ) {
-        const order = new Order();
-        const status = 'UNPAID';
-        order.phoneNumber = phoneNumber;
-        order.totalPrice = totalPrice;
-        order.taxAmount = taxAmount;
-        order.status = status;
-        const orderItem = new OrderItem();
-        const orderId = 'unknow';
-        orderItem.productId = productId;
-        orderItem.quantity = quantity;
-        orderItem.totalPrice = item_totalPrice;
-        orderItem.orderId = orderId;
-        orderItem.order = order;
-        console.log(orderId);
-        const orderRepository = getRepository(Order);
-        // const orderId = order.id;
-        // orderItem.orderId = orderId;
-        const orderItemRepository = getRepository(OrderItem);
-        //await orderRepository.save(order);
-        await orderItemRepository.save(orderItem);
         try {
-            //console.log(productId);
-            await orderRepository.save(order);
-            //await orderItemRepository.save(orderItem);
-        } catch (error) {
-            return 'error';
-        }
-        return 'Order received';
-    }
-    static async UpdateStatus(id: string, status: string) {
-        const orderRepository = getRepository(Order);
-        let order = new Order();
-        try {
-            order = await orderRepository.findOneOrFail(id);
-        } catch (error) {
-            return 'order not found';
-        }
+            const orderRepository = await getRepository(Order);
+            const order = await Order.createOrder(
+                totalPrice,
+                taxAmount,
+                phoneNumber,
+                OrderStatus.ORDER_RECEIVED
+            );
 
-        order.status = status;
-        try {
             await orderRepository.save(order);
+            Promise.all(
+                orderItems.map(async (item) => {
+                    const relatedProduct = await getRepository(Product).findOne(
+                        item.itemId
+                    );
+                    console.log(relatedProduct);
+                    const newOrderItem = await OrderItem.createOrderItem(
+                        item.quantity,
+                        item.totalPrice
+                    );
+                    newOrderItem.product = relatedProduct;
+                    newOrderItem.order = order;
+                    await getRepository(OrderItem).save(newOrderItem);
+                })
+            )
+                .then(() => {
+                    return order;
+                })
+                .catch((err) => {
+                    throw err;
+                });
         } catch (error) {
-            return 'error';
+            throw new Error('error');
         }
-        return 'Update successful';
     }
-    // static UpdateStatus(updatSta: any): any {
-    //     getRepository(Order).update(updatSta.id, updatSta.status);
-    //     return 'Update successful';
-    // }
-    // static PostOrders(orderInfo: any): any {
-    //     getRepository(Order).save(orderInfo);
-    //     //getRepository(OrderItem).save(orderInfo.OrderItem);
-    //     return 'Order received';
-    // }
+    static async UpdateStatus(id: string, status: OrderStatus) {
+        try {
+            const orderRepository = getRepository(Order);
+            const order = await orderRepository.findOneOrFail(id);
+            if (order) {
+                order.status = status;
+                await orderRepository.save(order);
+            }
+        } catch (error) {
+            throw new Error('No such id');
+        }
+        return new HttpResponseModel(200, 'Update successful');
+    }
 }

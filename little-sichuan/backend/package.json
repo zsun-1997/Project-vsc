@@ -11,7 +11,7 @@
         "lint": "eslint ./{seeds,src,tests}/{*,**}.ts",
         "lint:fix": "eslint ./{seeds,src,tests}/{*,**}.ts --fix",
         "seed": "ts-node-dev src/db/seeds/seeds.ts",
-        "start": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
+        "start": "set PORT=2000 && ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
         "test": "ts-mocha tests/*.ts --exit",
         "typeorm": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js"
     },
@@ -41,6 +41,7 @@
         "express-async-handler": "^1.1.4",
         "express-session": "^1.17.1",
         "helmet": "^3.23.1",
+        "jsonschema": "^1.4.0",
         "jsonwebtoken": "^8.5.1",
         "morgan": "^1.10.0",
         "morgan-debug": "^2.0.0",

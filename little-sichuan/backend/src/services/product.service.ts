@@ -1,7 +1,7 @@
-import { OutgoingMessage } from 'http';
-import { Double, getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { Product } from '../models';
-import { productRouter } from '../routes';
+import { HttpResponseModel } from '../regularmodule/HttpResponse.model';
+import { ProductIsFeatured } from '../enums/ProductIsFeatured.enum';
 
 export default class ProductService {
     static async addNewProduct(
@@ -9,45 +9,40 @@ export default class ProductService {
         description: string,
         type: string,
         image: string,
-        price: Double
-    ): Promise<any> {
-        let product = Product;
-        const productList: Array<Product> = [];
-        productList.push(
-            product.createProduct(name, description, type, image, price)
-        );
-        const productRepository = getRepository(Product);
+        price: number
+    ): Promise<HttpResponseModel> {
         try {
-            await productRepository.save(productList);
+            await getRepository(Product).save(
+                Product.createProduct(
+                    name,
+                    description,
+                    type,
+                    image,
+                    price,
+                    ProductIsFeatured.false
+                )
+            );
         } catch (error) {
-            return 'error';
+            throw new Error('Failed to create');
         }
-        return 'New product created';
+        return new HttpResponseModel(200, 'New product created');
     }
-    static async delProduct(delId: string): Promise<any> {
-        const productRepository = getRepository(Product);
-        let product: Product;
+    static async delProduct(delId: string): Promise<HttpResponseModel> {
         try {
-            product = await productRepository.findOneOrFail(delId);
+            await getRepository(Product).findOneOrFail(delId);
         } catch (error) {
-            return 'product not found';
+            throw new Error('Not found');
         }
-        productRepository.delete(delId);
-        return 'Product deleted';
+        getRepository(Product).delete(delId);
+        return new HttpResponseModel(200, 'Product deleted');
     }
-    // static addNewProduct(newProduct: any): any {
-    //     getRepository(Product).save(newProduct);
-    //     return 'New product created';
-    // }
     static async fetchbyIdProducts(id) {
-        const productRepository = getRepository(Product);
         try {
-            return await productRepository.findOne(id);
+            return await getRepository(Product).findOne(id);
         } catch (error) {
-            return 'error';
+            throw new Error('Not found');
         }
     }
-
     /**
      * Fetches all products
      * @returns all products

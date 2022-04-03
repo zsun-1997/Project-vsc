@@ -1,35 +1,31 @@
 import { Router } from 'express';
 import ash from 'express-async-handler';
+import { OrderStatus } from '../enums/OrderStatus.enum';
 import OrderService from '../services/order.service';
-// import expressJoi from '@escook/express-joi';
+import { Validator } from 'jsonschema';
+import schema from '../schema/orderschema';
+
 const orderRouter = Router();
-//const { order_schema } = require('../schema/order');
-// const ValidateSch = require('../middleware/validate-schema');
-// const schema = require('../schema/order');
 orderRouter.post(
     '/',
-    // expressJoi(order_schema),
-    // ValidateSch(schema),
     ash(async (req, res) => {
-        // const orderInfo = req.body;
-        let {
-            phoneNumber,
-            totalPrice,
-            taxAmount,
-            productId,
-            quantity,
-            item_totalPrice
-        } = req.body;
-        res.send(
-            await OrderService.PostOrders(
-                phoneNumber,
-                totalPrice,
-                taxAmount,
-                productId,
-                quantity,
-                item_totalPrice
-            )
-        );
+        const { phoneNumber, totalPrice, taxAmount, orderItems } = req.body;
+
+        const myValidator = new Validator();
+        const validation = myValidator.validate(req.body, schema);
+        console.log(validation.valid);
+        if (validation.valid) {
+            res.send(
+                await OrderService.PostOrders(
+                    phoneNumber,
+                    totalPrice,
+                    taxAmount,
+                    orderItems
+                )
+            );
+        } else {
+            res.send(new Error('Format error'));
+        }
     })
 );
 
@@ -37,11 +33,8 @@ orderRouter.patch(
     '/:id',
     ash(async (req, res) => {
         const id = req.params.id;
-        const status: string = req.body;
+        const status: OrderStatus = req.body;
         res.send(await OrderService.UpdateStatus(id, status));
     })
 );
 export default orderRouter;
-// function newFunction(): { order_schema: any } {
-//     return require('../schema/order');
-// }

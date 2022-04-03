@@ -1,0 +1,40 @@
+.cartlist {
+    display: flex;
+    margin-top: 1.5rem;
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid gray;
+        &--not-home {
+            width: 100%;
+        }
+    }
+    &__ct-part {
+        display: flex;
+        font-size: small;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+    &__title {
+        margin-left: 10px;
+    }
+    &__pt-part {
+        display: flex;
+        font-size: small;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+    &__delete {
+        display: flex;
+        margin: 2px 0px 0px 10px;
+        border: 0ch;
+        padding: 0;
+        background-color: white;
+        cursor: pointer;
+    }
+    &__delete-svg {
+        width: 10px;
+        height: 14px;
+    }
+}

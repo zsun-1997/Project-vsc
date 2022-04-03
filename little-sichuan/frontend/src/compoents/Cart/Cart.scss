@@ -1,0 +1,55 @@
+.MuiDrawer-paper {
+    width: 25%;
+}
+
+.cart {
+    margin: 20px 20px;
+    &__container {
+        display: flex;
+        flex-direction: column;
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__title {
+        font-size: x-large;
+    }
+
+    &__exit {
+        padding-right: 0;
+        border: 0ch;
+        background-color: white;
+        font-size: large;
+    }
+    &__checkout-but {
+        display: flex;
+        height: 2rem;
+        border: 0ch;
+        border-radius: 20px;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        font-size: large;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+    &__checkout {
+        margin: auto;
+    }
+    &__checkout-total {
+        margin: auto;
+    }
+    &__link {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin-top: 1.5rem;
+    }
+}
+@media (max-width: 1026px) {
+    .MuiDrawer-paper {
+        width: 100%;
+    }
+}

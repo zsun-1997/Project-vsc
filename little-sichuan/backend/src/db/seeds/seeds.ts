@@ -1,6 +1,5 @@
 import { getRepository, createConnection } from 'typeorm';
 import { Product } from '../../models';
-import logger from '../../config/logger.config';
 import csv from 'csvtojson';
 
 createConnection()
@@ -17,7 +16,8 @@ createConnection()
                             item['item_desc'],
                             item['type'],
                             item['image'],
-                            item['price']
+                            item['price'],
+                            item['isfeatured']
                         )
                     );
                 });

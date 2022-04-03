@@ -36,7 +36,11 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                     },
                     {
                         name: 'price',
-                        type: 'decimal'
+                        type: 'decimal(8,2)'
+                    },
+                    {
+                        name: 'isfeatured',
+                        type: 'boolean'
                     }
                 ]
             }),
@@ -53,20 +57,12 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                         generationStrategy: 'uuid'
                     },
                     {
-                        name: 'productId',
-                        type: 'varchar'
-                    },
-                    {
                         name: 'quantity',
                         type: 'int'
                     },
                     {
-                        name: 'totalPrice',
-                        type: 'decimal'
-                    },
-                    {
-                        name: 'orderId',
-                        type: 'varchar'
+                        name: 'itemtotalPrice',
+                        type: 'decimal(8,2)'
                     }
                 ]
             }),
@@ -89,11 +85,11 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                     },
                     {
                         name: 'totalPrice',
-                        type: 'decimal'
+                        type: 'decimal(8,2)'
                     },
                     {
                         name: 'taxAmount',
-                        type: 'decimal'
+                        type: 'decimal(8,2)'
                     },
                     {
                         name: 'phoneNumber',
@@ -107,10 +103,14 @@ export class InitialMigration1641677200652 implements MigrationInterface {
             }),
             true
         );
-        // await queryRunner.addColumn("orderItem", new TableColumn({
-        //     name: 'productId',
-        //     type: 'int'
-        // }))
+        await queryRunner.addColumn(
+            'orderitem',
+            new TableColumn({
+                name: 'productId',
+                type: 'varchar',
+                isNullable: false
+            })
+        );
 
         await queryRunner.createForeignKey(
             'orderitem',
@@ -118,22 +118,27 @@ export class InitialMigration1641677200652 implements MigrationInterface {
                 columnNames: ['productId'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'product',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
             })
         );
 
-        // await queryRunner.addColumn("orderItem", new TableColumn({
-        //     name: 'orderId',
-        //     type: 'int'
-        // }))
-
+        await queryRunner.addColumn(
+            'orderitem',
+            new TableColumn({
+                name: 'orderId',
+                type: 'varchar',
+                isNullable: false
+            })
+        );
         await queryRunner.createForeignKey(
             'orderitem',
             new TableForeignKey({
                 columnNames: ['orderId'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'order',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
             })
         );
     }
